@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Theming</title>
+	</head>
+	<body>
+		Theme: <select name="themes" id="themes-select"></select>
+
+		<h1>Theming</h1>
+
+		<p>I'm a short paragraph.</p>
+
+		<script>
+			const themes = [
+				{ slug: 'default', name: 'Default' },
+				{ slug: 'grunge', name: 'Grunge' },
+			];
+
+			function loadTheme( themeName ) {
+				const scriptElement = document.createElement( 'script' );
+				scriptElement.setAttribute( 'type', 'text/javascript' );
+				scriptElement.setAttribute( 'src', 'themes/' + themeName + '/theme.js' );
+			
+				const styleLinkElement = document.createElement( 'link' );
+				styleLinkElement.setAttribute( 'rel', 'stylesheet' );
+				styleLinkElement.setAttribute( 'type', 'text/css' );
+				styleLinkElement.setAttribute( 'href', 'themes/' + themeName + '/theme.css' );
+
+				const head = document.getElementsByTagName( 'head' )[ 0 ];
+				head.appendChild( scriptElement );
+				head.appendChild( styleLinkElement );
+			}
+
+			const searchParams = new URLSearchParams( window.location.search );
+			const selectedThemeName = searchParams.get( 'theme' ) || 'default';
+
+			const themesSelect = document.getElementById( 'themes-select' );
+
+			for ( const theme of themes ) {
+				const option = document.createElement( 'option' );
+				option.setAttribute( 'value', theme.slug );
+				option.appendChild( document.createTextNode( theme.name ) );
+				themesSelect.appendChild( option );
+			}
+
+			loadTheme( selectedThemeName );
+			themesSelect.value = selectedThemeName;
+
+			themesSelect.onchange = () => {
+				window.location.search = '?theme=' + themesSelect.value;
+			};
+		</script>
+	</body>
+</html>
