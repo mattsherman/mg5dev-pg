@@ -18,12 +18,12 @@
 			function loadTheme( themeName ) {
 				const scriptElement = document.createElement( 'script' );
 				scriptElement.setAttribute( 'type', 'text/javascript' );
-				scriptElement.setAttribute( 'src', 'themes/' + themeName + '/theme.js' );
+				scriptElement.setAttribute( 'src', `themes/${ themeName }/theme.js` );
 			
 				const styleLinkElement = document.createElement( 'link' );
 				styleLinkElement.setAttribute( 'rel', 'stylesheet' );
 				styleLinkElement.setAttribute( 'type', 'text/css' );
-				styleLinkElement.setAttribute( 'href', 'themes/' + themeName + '/theme.css' );
+				styleLinkElement.setAttribute( 'href', `themes/${ themeName }/theme.css` );
 
 				const head = document.getElementsByTagName( 'head' )[ 0 ];
 				head.appendChild( scriptElement );
