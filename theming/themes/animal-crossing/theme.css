@@ -1,0 +1,7 @@
+:root {
+	--nook-miles-bg-color: rgb(195, 208, 243);
+}
+
+body {
+	background-color: var(--nook-miles-bg-color);
+}
